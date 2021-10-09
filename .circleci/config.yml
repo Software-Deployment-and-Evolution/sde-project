@@ -31,7 +31,7 @@ jobs:
           create-repo: true
           dockerfile: Dockerfile
           path: .
-          region: ap-southeast-2
+          region: "ap-southeast-2"
           repo: sde-project
           tag: "$CIRCLE_SHA1"
   # placeholder for "deploy" job
