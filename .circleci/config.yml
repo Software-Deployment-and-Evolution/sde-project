@@ -11,6 +11,10 @@ orbs:
   node: circleci/node@4.7
 
 jobs:
+  # placeholder for "test" job
+  test:
+    steps:
+      - checkout
   build:
     executor:
       name: node/default
@@ -23,6 +27,10 @@ jobs:
       - run: 
           name: install-dependencies
           command: yarn install
+  # placeholder for "deploy" job
+  deploy:
+    steps:
+      - checkout
 
 # Invoke jobs via workflows
 # See: https://circleci.com/docs/2.0/configuration-reference/#workflows
@@ -30,4 +38,6 @@ workflows:
   ci-cd: # This is the name of the workflow, feel free to change it to better match your workflow.
     # Inside the workflow, you define the jobs you want to run.
     jobs:
+      - test
       - build
+      - deploy
