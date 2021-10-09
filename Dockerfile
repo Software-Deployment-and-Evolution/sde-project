@@ -1,5 +1,5 @@
 # pull the official base image
-FROM node:14.17.6-alpine
+FROM node:14.15.0-alpine
 # set working direction
 WORKDIR /app
 # add `/app/node_modules/.bin` to $PATH
@@ -10,5 +10,6 @@ COPY yarn.lock ./
 RUN yarn install
 # add app
 COPY . ./
+EXPOSE 3000
 # start app
-CMD ["yarn", "start"]
+ENTRYPOINT ["yarn", "start"]

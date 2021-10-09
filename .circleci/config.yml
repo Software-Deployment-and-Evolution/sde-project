@@ -8,33 +8,36 @@ version: 2.1
 # Orbs are reusable packages of CircleCI configuration that you may share across projects, enabling you to create encapsulated, parameterized commands, jobs, and executors that can be used across multiple projects.
 # See: https://circleci.com/docs/2.0/orb-intro/
 orbs:
-  node: circleci/node@4.7
+  aws-ecr: circleci/aws-ecr@7.2.0
 
 jobs:
   # placeholder for "test" job
   test:
-    executor:
-      name: node/default
-      tag: '14.15.0'
+    docker:
+      - image: cimg/node:14.15.0
     steps:
       - checkout
   build:
-    executor:
-      name: node/default
-      tag: '14.15.0'
+    docker:
+      - image: cimg/node:14.15.0
     steps:
       - checkout
-      - run:
-          name: test-command
-          command: echo "hello world"
-      - run: 
-          name: install-dependencies
-          command: yarn install
+      - setup_remote_docker:
+          version: 20.10.7
+      - aws-ecr/build-and-push-image:
+          account-url: AWS_ECR_ACCOUNT_URL
+          aws-access-key-id: AWS_ACCESS_KEY_ID
+          aws-secret-access-key: AWS_SECRET_ACCESS_KEY
+          create-repo: true
+          dockerfile: Dockerfile
+          path: .
+          region: AWS_REGION
+          repo: sde-project
+          tag: "$CIRCLE_SHA1"
   # placeholder for "deploy" job
   deploy:
-    executor:
-      name: node/default
-      tag: '14.15.0'
+    docker:
+      - image: cimg/node:14.15.0
     steps:
       - checkout
 
