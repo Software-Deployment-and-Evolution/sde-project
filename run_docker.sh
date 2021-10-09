@@ -1,3 +1,5 @@
+# building docker image with the latest change.
+docker build -t sde-project:latest .
 # command to run docker container
 # -it is for starting the container in interactive mode
 # -rm for removing the container after exiting.
