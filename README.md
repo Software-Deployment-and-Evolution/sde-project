@@ -6,6 +6,16 @@ This project was bootstrapped with [Create React App](https://github.com/faceboo
 
 In the project directory, you can run:
 
+### `bash run_docker.sh`
+
+To run the docker container in interactive mode with hot-loading enable. 
+You should turn on Docker Desktop on your machine before running this command.
+
+Open [http://localhost:3001](http://localhost:3001) to view it in the browser.
+
+The page will reload if you make edits.\
+You will also see any lint errors in the console.
+
 ### `yarn start`
 
 Runs the app in the development mode.\
