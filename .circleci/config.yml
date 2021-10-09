@@ -9,6 +9,7 @@ version: 2.1
 # See: https://circleci.com/docs/2.0/orb-intro/
 orbs:
   node: circleci/node@4.7
+  aws-ecr: circleci/aws-ecr@7.2.0
 
 jobs:
   # placeholder for "test" job
@@ -19,17 +20,18 @@ jobs:
     steps:
       - checkout
   build:
-    executor:
-      name: node/default
-      tag: '14.15.0'
     steps:
       - checkout
-      - run:
-          name: test-command
-          command: echo "hello world"
-      - run: 
-          name: install-dependencies
-          command: yarn install
+      - aws-ecr/build-and-push-image:
+          account-url: AWS_ECR_ACCOUNT_URL
+          aws-access-key-id: AWS_ACCESS_KEY_ID
+          aws-secret-access-key: AWS_SECRET_ACCESS_KEY
+          create-repo: true
+          dockerfile: Dockerfile
+          path: .
+          region: ap-southeast-2
+          repo: sde-project
+          tag: "$CIRCLE_SHA1"
   # placeholder for "deploy" job
   deploy:
     executor:
