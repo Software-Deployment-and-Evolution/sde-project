@@ -13,6 +13,9 @@ orbs:
 jobs:
   # placeholder for "test" job
   test:
+    executor:
+      name: node/default
+      tag: '14.15.0'
     steps:
       - checkout
   build:
@@ -29,6 +32,9 @@ jobs:
           command: yarn install
   # placeholder for "deploy" job
   deploy:
+    executor:
+      name: node/default
+      tag: '14.15.0'
     steps:
       - checkout
 
