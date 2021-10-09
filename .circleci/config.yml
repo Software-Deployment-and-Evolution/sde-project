@@ -21,7 +21,7 @@ jobs:
       - checkout
   build:
     docker:
-      - image: node:14.15.0
+      - image: cimg/node:14.15.0
     steps:
       - checkout
       - aws-ecr/build-and-push-image:
