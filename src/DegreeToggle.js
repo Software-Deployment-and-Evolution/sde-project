@@ -5,7 +5,7 @@ const DegreeToggle = ({ degreeType, updateForecastDegree }) => {
     <React.Fragment>
         <div className="form-check form-check-inline">
             <input
-                class="form-check-input"
+                className="form-check-input"
                 type="radio"
                 name="degree-type"
                 id="celsius"
@@ -13,11 +13,11 @@ const DegreeToggle = ({ degreeType, updateForecastDegree }) => {
                 checked={degreeType === "celsius"}
                 onChange={updateForecastDegree}
             />
-            <label class="form-check-label" for="celsius">Celsius</label>
+            <label className="form-check-label" htmlFor="celsius">Celsius</label>
         </div>
         <div className="form-check form-check-inline">
             <input
-                class="form-check-input"
+                className="form-check-input"
                 type="radio"
                 name="degree-type"
                 id="farenheit"
@@ -25,7 +25,7 @@ const DegreeToggle = ({ degreeType, updateForecastDegree }) => {
                 checked={degreeType === "farenheit"}
                 onChange={updateForecastDegree}
             />
-            <label class="form-check-label" for="farenheit">Farenheit</label>
+            <label className="form-check-label" htmlFor="farenheit">Farenheit</label>
         </div>
     </React.Fragment>
   )
