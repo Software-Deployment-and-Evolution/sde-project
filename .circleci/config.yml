@@ -33,7 +33,7 @@ jobs:
           path: .
           region: AWS_REGION
           repo: sde-project
-          tag: "$CIRCLE_SHA1"
+          tag: latest
   # placeholder for "deploy" job
   deploy:
     docker:
