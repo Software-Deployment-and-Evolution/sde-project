@@ -9,6 +9,7 @@ version: 2.1
 # See: https://circleci.com/docs/2.0/orb-intro/
 orbs:
   aws-ecr: circleci/aws-ecr@7.2.0
+  aws-ecs: circleci/aws-ecs@2.2.1
 
 jobs:
   # placeholder for "test" job
@@ -41,6 +42,11 @@ jobs:
       - image: cimg/node:14.15.0
     steps:
       - checkout
+      - aws-ecs/deploy-service-update:
+          cluster-name: 'circle-ci-cluster'
+          aws-region: AWS_REGION
+          family: 'circle-ci-ecs-task-definition'
+          container-image-name-updates: 'container=sde-project,tag=latest'
 
 # Invoke jobs via workflows
 # See: https://circleci.com/docs/2.0/configuration-reference/#workflows
@@ -50,15 +56,15 @@ workflows:
     jobs:
       - test
       - build:
-          filters:
-            branches:
-              only:
-                - master
+          # filters:
+          #   branches:
+          #     only:
+          #       - master
       - deploy:
           requires:
             - test
             - build
-          filters:
-            branches:
-              only:
-                - master
+          # filters:
+          #   branches:
+          #     only:
+          #       - master
