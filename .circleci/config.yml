@@ -40,7 +40,7 @@ jobs:
   # placeholder for "deploy" job
   deploy:
     docker:
-      - image: cimg/node:14.15.0
+      - image: cimg/python:3.10.0
     steps:
       - checkout
       - aws-cli/setup:
