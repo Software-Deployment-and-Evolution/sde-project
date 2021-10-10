@@ -52,6 +52,8 @@ jobs:
           service-name: 'circle-ci-ecs-service'
           family: 'circle-ci-ecs-task-definition'
           container-image-name-updates: 'container=sde-project,tag=latest'
+          verify-revision-is-deployed: true
+          force-new-deployment: true
 
 # Invoke jobs via workflows
 # See: https://circleci.com/docs/2.0/configuration-reference/#workflows
