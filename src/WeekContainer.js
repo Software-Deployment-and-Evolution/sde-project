@@ -1,5 +1,4 @@
 import React from 'react';
-import WeatherApiKey from './ApiKey.json';
 import DayCard from './DayCard';
 import DegreeToggle from './DegreeToggle';
 
@@ -11,8 +10,9 @@ class WeekContainer extends React.Component {
     }
 
     componentDidMount = () => {
+        const API_KEY = process.env.REACT_APP_WEATHER_API_KEY;
         const weatherURL =
-            `http://api.openweathermap.org/data/2.5/forecast?zip=11102&units=imperial&APPID=${WeatherApiKey.key}`;
+            `http://api.openweathermap.org/data/2.5/forecast?zip=11102&units=imperial&APPID=${API_KEY}`;
 
         fetch(weatherURL)
             .then(res => res.json())
