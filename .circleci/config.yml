@@ -54,6 +54,8 @@ jobs:
           container-image-name-updates: 'container=sde-project,tag=latest'
           verify-revision-is-deployed: true
           force-new-deployment: true
+          poll-interval: 30
+          max-poll-attempts: 60
 
 # Invoke jobs via workflows
 # See: https://circleci.com/docs/2.0/configuration-reference/#workflows
