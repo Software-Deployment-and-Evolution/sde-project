@@ -34,6 +34,7 @@ jobs:
           region: AWS_REGION
           repo: sde-project
           tag: latest
+          extra-build-args: '--build-arg WEATHER_API_KEY=${WEATHER_API_KEY}'
   # placeholder for "deploy" job
   deploy:
     docker:
