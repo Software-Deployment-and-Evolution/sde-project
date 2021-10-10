@@ -49,7 +49,7 @@ jobs:
           aws-secret-access-key: AWS_SECRET_ACCESS_KEY
       - aws-ecs/update-service:
           cluster-name: 'circle-ci-cluster'
-          family: 'circle-ci-ecs-service'
+          family: 'circle-ci-ecs-task-definition'
           container-image-name-updates: 'container=sde-project,tag=latest'
 
 # Invoke jobs via workflows
