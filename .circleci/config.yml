@@ -1,21 +1,79 @@
 # This config is equivalent to both the '.circleci/extended/orb-free.yml' and the base '.circleci/config.yml'
 version: 2.1
 
+# Sample React projects with Circle CI
+# - https://github.com/CircleCI-Public/circleci-demo-javascript-react-app/blob/master/.circleci/config.yml
+# - https://github.com/CircleCI-Public/circleci-demo-javascript-express/blob/master/.circleci/config.yml
+
 # Orbs are reusable packages of CircleCI configuration that you may share across projects, enabling you to create encapsulated, parameterized commands, jobs, and executors that can be used across multiple projects.
 # See: https://circleci.com/docs/2.0/orb-intro/
 orbs:
-  node: circleci/node@4.7
+  aws-cli: circleci/aws-cli@1.3
+  aws-ecr: circleci/aws-ecr@7.2.0
+  aws-ecs: circleci/aws-ecs@2.0.0
+
+jobs:
+  # placeholder for "test" job
+  test:
+    docker:
+      - image: cimg/node:14.15.0
+    steps:
+      - checkout
+  build:
+    docker:
+      - image: cimg/node:14.15.0
+    steps:
+      - checkout
+      - setup_remote_docker:
+          version: 20.10.7
+      - aws-ecr/build-and-push-image:
+          account-url: AWS_ECR_ACCOUNT_URL
+          aws-access-key-id: AWS_ACCESS_KEY_ID
+          aws-secret-access-key: AWS_SECRET_ACCESS_KEY
+          create-repo: true
+          dockerfile: Dockerfile
+          path: .
+          region: AWS_REGION
+          repo: sde-project
+          tag: latest
+          extra-build-args: '--build-arg WEATHER_API_KEY=${WEATHER_API_KEY}'
+  # placeholder for "deploy" job
+  deploy:
+    docker:
+      - image: cimg/python:3.10.0
+    steps:
+      - checkout
+      - aws-cli/setup:
+          aws-access-key-id: AWS_ACCESS_KEY_ID
+          aws-region: AWS_REGION
+          aws-secret-access-key: AWS_SECRET_ACCESS_KEY
+      - aws-ecs/update-service:
+          cluster-name: 'circle-ci-cluster'
+          service-name: 'circle-ci-ecs-service'
+          family: 'circle-ci-ecs-task-definition'
+          container-image-name-updates: 'container=sde-project,tag=latest'
+          verify-revision-is-deployed: true
+          force-new-deployment: true
+          poll-interval: 30
+          max-poll-attempts: 60
 
 # Invoke jobs via workflows
 # See: https://circleci.com/docs/2.0/configuration-reference/#workflows
 workflows:
-  sample: # This is the name of the workflow, feel free to change it to better match your workflow.
+  ci-cd: # This is the name of the workflow, feel free to change it to better match your workflow.
     # Inside the workflow, you define the jobs you want to run.
     jobs:
-      - node/test:
-          # This is the node version to use for the `cimg/node` tag
-          # Relevant tags can be found on the CircleCI Developer Hub
-          # https://circleci.com/developer/images/image/cimg/node
-          version: 'v14.0.0'
-          # If you are using yarn, change the line below from "npm" to "yarn"
-          pkg-manager: npm
+      - test
+      - build:
+          filters:
+            branches:
+              only:
+                - master
+      - deploy:
+          requires:
+            - test
+            - build
+          filters:
+            branches:
+              only:
+                - master

@@ -1,3 +1,5 @@
+[![Software Deployment & Evolution Project](https://circleci.com/gh/Software-Deployment-and-Evolution/sde-project.svg?style=svg)](https://app.circleci.com/pipelines/github/Software-Deployment-and-Evolution/sde-project?branch=master)
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
