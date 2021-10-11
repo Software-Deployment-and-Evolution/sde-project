@@ -7,11 +7,3 @@ exports[`Snapshot Testing: App component renders without crashing with the save 
   <WeekContainer />
 </div>
 `;
-
-exports[`Snapshot Testing: WeekContainer renders without crashing with the save snapshot 1`] = `
-<div
-  className="App"
->
-  <WeekContainer />
-</div>
-`;
