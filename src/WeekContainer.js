@@ -13,20 +13,23 @@ class WeekContainer extends React.Component {
     componentDidMount = () => {
         const weatherURL =
             `http://api.openweathermap.org/data/2.5/forecast?zip=11102&units=imperial&APPID=${WeatherApiKey.key}`;
-
+        this.fetchingWeatherData(weatherURL);
+    }
+    fetchingWeatherData = (weatherURL) => {
         fetch(weatherURL)
-            .then(res => res.json())
-            .then(data => {
-                console.log("Data List Loaded", data.list)
-                const dailyData = data.list.filter(reading => {
-                        return reading.dt_txt.includes("18:00:00")
-                    }
-                )
-                this.setState({
-                    fullData: data.list,
-                    dailyData: dailyData
-                }, () => console.log(this.state))
-            });
+        .then(res => res.json())
+        .then(data => {
+            console.log("Data List Loaded", data.list)
+            const dailyData = data.list.filter(reading => {
+                    return reading.dt_txt.includes("18:00:00")
+                }
+            )
+            this.setState({
+                fullData: data.list,
+                dailyData: dailyData
+            }, () => console.log(this.state))
+        });
+        
     }
     
     updateForecastDegree = event => {

@@ -7,7 +7,7 @@ const DayCard = ({ reading, degreeType }) => {
     newDate.setTime(weekday)
 
     const fahrenheit = Math.round(reading.main.temp)
-    const celsius = Math.round((fahrenheit - 32) * 5/9)
+    const celsius =FahrenheitToCelsius(fahrenheit)
 
     const imgURL = `owf owf-${reading.weather[0].id} owf-5x`
 
@@ -24,6 +24,9 @@ const DayCard = ({ reading, degreeType }) => {
         </div>
         </div>
     )
+}
+export function FahrenheitToCelsius(fahrenheit) {
+    return Math.round((fahrenheit - 32) * 5/9);
 }
 
 export default DayCard;
