@@ -10,7 +10,7 @@ describe('Snapshot Testing: WeekContainer', () => {
     expect(toJson(wrapper)).toMatchSnapshot()
   });
   it('Snapshot Testing: expect the `degreeType` prop on the DegreeToggle component is the same as default', () => {
-    const defaultDegreeType = "fahrenheit";
+    const defaultDegreeType = "farenheit";
     // Query for the DegreeToggle component in the rendered output
     const wrapper = shallow( <WeekContainer /> )
     const DegreeToggleComponent = wrapper.find(DegreeToggle);

@@ -5,21 +5,21 @@ exports[`Snapshot Testing: WeekContainer renders without crashing with the save 
   className="container"
 >
   <h1
-    className="display-1 jumbotron"
+    className="display-2 jumbotron"
   >
-    4-Day Forecast.
+    Weather Forecast
   </h1>
   <h5
-    className="display-5 text-muted"
+    className="display-5"
   >
-    New York, US
+    Location: New York, US
   </h5>
   <DegreeToggle
-    degreeType="fahrenheit"
+    degreeType="farenheit"
     updateForecastDegree={[Function]}
   />
   <div
-    className="row justify-content-center"
+    className="row"
   />
 </div>
 `;
