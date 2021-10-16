@@ -6,7 +6,7 @@ class WeekContainer extends React.Component {
     state = {
         fullData: [],
         dailyData: [],
-        degreeType: "fahrenheit"
+        degreeType: "farenheit"
     }
 
     componentDidMount = () => {
@@ -45,10 +45,10 @@ class WeekContainer extends React.Component {
     render() {
         return (
             <div className="container">
-                <h1 className="display-1 jumbotron">4-Day Forecast.</h1>
-                <h5 className="display-5 text-muted">New York, US</h5>
+                <h1 className="display-2 jumbotron">Weather Forecast</h1>
+                <h5 className="display-5">Location: New York, US</h5>
                 <DegreeToggle degreeType={this.state.degreeType} updateForecastDegree={this.updateForecastDegree} />
-                <div className="row justify-content-center">
+                <div className="row">
                     {this.formatDayCards()}
                 </div>
             </div>

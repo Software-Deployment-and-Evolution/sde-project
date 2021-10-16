@@ -36,3 +36,39 @@
     transform: rotate(360deg);
   }
 }
+
+.container {
+  margin-left: 0;
+  margin-right: 0;
+  padding: 0;
+  min-width: 100vw;
+}
+
+.display-2 {
+  background-color: #61dafb;
+  color: #282c34;
+}
+
+.display-5 {
+  font-size: xx-large;
+  padding-bottom: 1rem;
+}
+
+.form-check {
+  padding-bottom: 2rem;
+  font-size: large;
+  font-style: italic;
+}
+
+.row {
+  justify-content: space-between;
+  padding-left: 8rem;
+  padding-right: 8rem;
+  padding-top: 2rem;
+}
+
+.card {
+  padding-top: 1.5rem;
+  box-shadow: rgba(50, 50, 93, 0.25) 0px 50px 100px -20px, rgba(0, 0, 0, 0.3) 0px 30px 60px -30px;
+  background-color: lightyellow;
+}
