@@ -1,0 +1,25 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Snapshot Testing: WeekContainer renders without crashing with the save snapshot 1`] = `
+<div
+  className="container"
+>
+  <h1
+    className="display-1 jumbotron"
+  >
+    4-Day Forecast.
+  </h1>
+  <h5
+    className="display-5 text-muted"
+  >
+    New York, US
+  </h5>
+  <DegreeToggle
+    degreeType="fahrenheit"
+    updateForecastDegree={[Function]}
+  />
+  <div
+    className="row justify-content-center"
+  />
+</div>
+`;
